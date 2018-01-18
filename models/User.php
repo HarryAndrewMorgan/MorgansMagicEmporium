@@ -1,12 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Rayek
- * Date: 18/01/2018
- * Time: 01:05
- */
-
-class user extends PDO
+class User extends PDO
 {
     private $db;
 
@@ -21,6 +14,9 @@ class user extends PDO
         {
             $hashedpassword = password_hash($pass, PASSWORD_DEFAULT);
             $sqlQuery = $this->db->prepare("INSERT INTO Users(Username,Email,Password) VALUES(:username, :email, :pass)");
+            $sqlQuery->bindparam(":username", $username);
+            $sqlQuery->bindparam(":email", $email);
+            $sqlQuery->bindparam(":pass", $hashedpassword);
             $sqlQuery->execute();
 
         }
