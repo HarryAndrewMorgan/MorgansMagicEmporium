@@ -25,6 +25,32 @@ class User extends PDO
             echo $exception->getMessage();
         }
     }
+    //login function
+    public function login($username,$email,$pass)
+    {
+        try
+        {
+            $sqlQuery = $this->db->prepare("SELECT * FROM Users WHERE Username=:uname OR Email=:umail LIMIT 1");
+            $sqlQuery->execute(array(':username'=>$username, ':email'=>$email));
+            $userRow=$sqlQuery->fetch(PDO::FETCH_ASSOC);
+            if($sqlQuery->rowCount() > 0)
+            {
+                if(password_verify($pass, $userRow['Password']))
+                {
+                    $_SESSION['user_session'] = $userRow['user_id'];
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
     //simple check to see if user is logged in
     public function is_loggedin()
     {
