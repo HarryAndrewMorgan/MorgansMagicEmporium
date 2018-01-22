@@ -64,4 +64,11 @@ class User extends PDO
     {
         header("Location: $url");
     }
+
+    public function logout()
+    {
+        session_unset();
+        session_destroy();
+        $this->redirect('index.php');
+    }
 }

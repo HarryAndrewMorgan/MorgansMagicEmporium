@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36ad3f38-3d51-4e89-a314-5854fd2ac652" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/User.php" afterPath="$PROJECT_DIR$/models/User.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/dashboard.phtml" afterPath="$PROJECT_DIR$/views/dashboard.phtml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,7 +33,7 @@
       <file leaf-file-name="register.phtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/register.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-136">
+            <state relative-caret-position="-952">
               <caret line="1" column="31" lean-forward="false" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
               <folding>
                 <marker date="1516245924476" expanded="true" signature="1172:1246" ph="SELECT Usern... Users" />
@@ -41,24 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/User.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="521">
-              <caret line="32" column="103" lean-forward="false" selection-start-line="32" selection-start-column="103" selection-end-line="32" selection-end-column="103" />
-              <folding>
-                <marker date="1516660134398" expanded="true" signature="332:407" ph="INSERT INTO Users... " />
-                <marker date="1516660134398" expanded="true" signature="877:945" ph="SELECT * FRO... Users" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="login.phtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/login.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="33" />
+            <state relative-caret-position="136">
+              <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="12" selection-end-column="35" />
               <folding>
                 <marker date="1516660728374" expanded="false" signature="1290:1296" ph=" " />
               </folding>
@@ -66,74 +54,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.phtml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/index.phtml">
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/models/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dashboard.phtml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/dashboard.phtml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="725">
+              <caret line="71" column="37" lean-forward="false" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
               <folding>
-                <marker date="1516661307681" expanded="true" signature="309:353" ph="SELECT * FRO... Users" />
+                <marker date="1516661854773" expanded="true" signature="332:407" ph="INSERT INTO Users... " />
+                <marker date="1516661854773" expanded="true" signature="877:945" ph="SELECT * FRO... Users" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="connectdb.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/connectdb.php">
+      <file leaf-file-name="dashboard.phtml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/dashboard.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="navbar.phtml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/navbar.phtml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-142">
-              <caret line="1" column="12" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dashboard.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dashboard.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/3788002a-8fc5-4bbc-8b14-7e2fa58d4456/console.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="20" lean-forward="false" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="374">
+              <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+              <folding>
+                <marker date="1516661907365" expanded="true" signature="309:353" ph="SELECT * FRO... Users" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -152,10 +93,10 @@
         <option value="$PROJECT_DIR$/models/user.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/3788002a-8fc5-4bbc-8b14-7e2fa58d4456/console.sql" />
         <option value="$PROJECT_DIR$/dashboard.php" />
-        <option value="$PROJECT_DIR$/models/User.php" />
         <option value="$PROJECT_DIR$/views/register.phtml" />
         <option value="$PROJECT_DIR$/views/navbar.phtml" />
         <option value="$PROJECT_DIR$/views/login.phtml" />
+        <option value="$PROJECT_DIR$/models/User.php" />
         <option value="$PROJECT_DIR$/views/dashboard.phtml" />
       </list>
     </option>
@@ -290,7 +231,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9230000" />
+    <option name="totallyTimeSpent" value="9826000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -390,8 +331,8 @@
         <state relative-caret-position="544">
           <caret line="32" column="104" lean-forward="false" selection-start-line="32" selection-start-column="104" selection-end-line="32" selection-end-column="104" />
           <folding>
-            <marker date="1516660134398" expanded="true" signature="332:407" ph="INSERT INTO Users... " />
-            <marker date="1516660134398" expanded="true" signature="877:945" ph="SELECT * FRO... Users" />
+            <marker date="1516661854773" expanded="true" signature="332:407" ph="INSERT INTO Users... " />
+            <marker date="1516661854773" expanded="true" signature="877:945" ph="SELECT * FRO... Users" />
           </folding>
         </state>
       </provider>
@@ -465,8 +406,8 @@
         <state relative-caret-position="544">
           <caret line="32" column="112" lean-forward="false" selection-start-line="32" selection-start-column="112" selection-end-line="32" selection-end-column="112" />
           <folding>
-            <marker date="1516660134398" expanded="true" signature="332:407" ph="INSERT INTO Users... " />
-            <marker date="1516660134398" expanded="true" signature="877:945" ph="SELECT * FRO... Users" />
+            <marker date="1516661854773" expanded="true" signature="332:407" ph="INSERT INTO Users... " />
+            <marker date="1516661854773" expanded="true" signature="877:945" ph="SELECT * FRO... Users" />
           </folding>
         </state>
       </provider>
@@ -494,8 +435,8 @@
         <state relative-caret-position="340">
           <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <marker date="1516660134398" expanded="true" signature="332:407" ph="INSERT INTO Users... " />
-            <marker date="1516660134398" expanded="true" signature="877:945" ph="SELECT * FRO... Users" />
+            <marker date="1516661854773" expanded="true" signature="332:407" ph="INSERT INTO Users... " />
+            <marker date="1516661854773" expanded="true" signature="877:945" ph="SELECT * FRO... Users" />
           </folding>
         </state>
       </provider>
@@ -515,8 +456,8 @@
         <state relative-caret-position="17">
           <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
           <folding>
-            <marker date="1516660134398" expanded="true" signature="332:407" ph="INSERT INTO Users... " />
-            <marker date="1516660134398" expanded="true" signature="877:945" ph="SELECT * FRO... Users" />
+            <marker date="1516661854773" expanded="true" signature="332:407" ph="INSERT INTO Users... " />
+            <marker date="1516661854773" expanded="true" signature="877:945" ph="SELECT * FRO... Users" />
           </folding>
         </state>
       </provider>
@@ -557,21 +498,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/connectdb.php">
+    <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/register.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="1" column="31" lean-forward="false" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
-          <folding>
-            <marker date="1516245924476" expanded="true" signature="1172:1246" ph="SELECT Usern... Users" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -583,10 +514,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
+    <entry file="file://$PROJECT_DIR$/models/connectdb.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -601,21 +532,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/login.phtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="33" />
+        <state relative-caret-position="136">
+          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="12" selection-end-column="35" />
           <folding>
             <marker date="1516660728374" expanded="false" signature="1290:1296" ph=" " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="32" column="103" lean-forward="false" selection-start-line="32" selection-start-column="103" selection-end-line="32" selection-end-column="103" />
-          <folding>
-            <marker date="1516660134398" expanded="true" signature="332:407" ph="INSERT INTO Users... " />
-            <marker date="1516660134398" expanded="true" signature="877:945" ph="SELECT * FRO... Users" />
           </folding>
         </state>
       </provider>
@@ -628,12 +548,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/register.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-952">
+          <caret line="1" column="31" lean-forward="false" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
+          <folding>
+            <marker date="1516245924476" expanded="true" signature="1172:1246" ph="SELECT Usern... Users" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/dashboard.phtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state relative-caret-position="374">
+          <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
           <folding>
-            <marker date="1516661307681" expanded="true" signature="309:353" ph="SELECT * FRO... Users" />
+            <marker date="1516661907365" expanded="true" signature="309:353" ph="SELECT * FRO... Users" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="725">
+          <caret line="71" column="37" lean-forward="false" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
+          <folding>
+            <marker date="1516661854773" expanded="true" signature="332:407" ph="INSERT INTO Users... " />
+            <marker date="1516661854773" expanded="true" signature="877:945" ph="SELECT * FRO... Users" />
           </folding>
         </state>
       </provider>

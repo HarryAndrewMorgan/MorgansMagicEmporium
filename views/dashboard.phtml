@@ -11,13 +11,21 @@ $username = $_SESSION['username'];
 $sqlQuery = $connection->prepare("SELECT * FROM Users WHERE Username=:username");
 $sqlQuery->execute(array(":username"=>$username));
 $userRow=$sqlQuery->fetch(PDO::FETCH_ASSOC);
+
+if(isset($_POST['logout']))
+{
+    $user->logout();
+    echo "logoutbeingcalled";
+}
 ?>
     <title>welcome - <?php print($userRow['email']); ?></title>
 
+<form method="post">
+    <button type="submit" id="logout" name="logout" class="btn btn-block btn-primary">
+        <i class="glyphicon glyphicon-log-out"></i>&nbsp;Logout
+    </button>
+</form>
 
-    <div class="right">
-        <label><a href="logout.php?logout=true"><i class="glyphicon glyphicon-log-out"></i> logout</a></label>
-    </div>
 </div>
 <div class="content">
     Welcome : <?php print($userRow['Username']); ?>
