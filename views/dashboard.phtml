@@ -1,3 +1,35 @@
 <?php require('views/navbar.phtml') ?>
+<?php require_once ('models/connectdb.php');
+require_once ('models/User.php');
+$user = new User($connection);
+session_start();
+if(!isset($_SESSION['username']))
+{
+    //$user->redirect('index.php');
+}
+$username = $_SESSION['username'];
+$sqlQuery = $connection->prepare("SELECT * FROM Users WHERE Username=:username");
+$sqlQuery->execute(array(":username"=>$username));
+$userRow=$sqlQuery->fetch(PDO::FETCH_ASSOC);
 
-<?php require('Views/footer.phtml') ?>
+if(isset($_POST['logout']))
+{
+    $user->logout();
+    echo "logoutbeingcalled";
+}
+?>
+    <title>welcome - <?php print($userRow['email']); ?></title>
+
+<form method="post">
+    <button type="submit" id="logout" name="logout" class="btn btn-block btn-primary">
+        <i class="glyphicon glyphicon-log-out"></i>&nbsp;Logout
+    </button>
+</form>
+
+</div>
+<div class="content">
+    Welcome : <?php print($userRow['Username']); ?>
+</div>
+</body>
+</html>
+<?php require('views/footer.phtml') ?>

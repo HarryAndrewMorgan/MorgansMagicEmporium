@@ -30,7 +30,7 @@ class User extends PDO
     {
         try
         {
-            $sqlQuery = $this->db->prepare("SELECT * FROM Users WHERE Username=:uname OR Email=:umail LIMIT 1");
+            $sqlQuery = $this->db->prepare("SELECT * FROM Users WHERE Username=:username OR Email=:email LIMIT 1");
             $sqlQuery->execute(array(':username'=>$username, ':email'=>$email));
             $userRow=$sqlQuery->fetch(PDO::FETCH_ASSOC);
             if($sqlQuery->rowCount() > 0)
@@ -63,5 +63,12 @@ class User extends PDO
     public function redirect($url)
     {
         header("Location: $url");
+    }
+
+    public function logout()
+    {
+        session_unset();
+        session_destroy();
+        $this->redirect('index.php');
     }
 }
