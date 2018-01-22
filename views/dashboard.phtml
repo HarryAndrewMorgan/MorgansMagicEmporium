@@ -1,13 +1,15 @@
+<?php require('views/navbar.phtml') ?>
 <?php require_once ('models/connectdb.php');
 require_once ('models/User.php');
 $user = new User($connection);
-if(!$user->is_loggedin())
+session_start();
+if(!isset($_SESSION['username']))
 {
-    $user->redirect('index.php');
+    //$user->redirect('index.php');
 }
-$user_id = $_SESSION['username'];
-$sqlQuery = $DB_con->prepare("SELECT * FROM Users WHERE Username=:username");
-$sqlQuery->execute(array(":user_id"=>$user_id));
+$username = $_SESSION['username'];
+$sqlQuery = $connection->prepare("SELECT * FROM Users WHERE Username=:username");
+$sqlQuery->execute(array(":username"=>$username));
 $userRow=$sqlQuery->fetch(PDO::FETCH_ASSOC);
 ?>
     <title>welcome - <?php print($userRow['email']); ?></title>
@@ -18,7 +20,7 @@ $userRow=$sqlQuery->fetch(PDO::FETCH_ASSOC);
     </div>
 </div>
 <div class="content">
-    Welcome : <?php print($userRow['username']); ?>
+    Welcome : <?php print($userRow['Username']); ?>
 </div>
 </body>
 </html>
