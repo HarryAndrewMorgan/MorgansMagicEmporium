@@ -14,7 +14,7 @@ $pass = $_POST['password'];
 if($user->login($username,$email,$pass))
 {
 $user->redirect('index.php');
-$_SESSION['username'] = $uname;
+$_SESSION['username'] = $username;
 }
 else
 {
