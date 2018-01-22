@@ -1,72 +1,84 @@
 <?php require('views/navbar.phtml');
-require_once 'models/connectdb.php';
+require_once ('models/connectdb.php');
+require_once ('models/User.php');
+$user = new User($connection);
+
 //if user is logged in redirect them to index
 if($user->is_loggedin()!="")
 {
     $user->redirect('index.php');
 }
+
 //trimming the submitted data into post variables
-if(isset($_POST['btn-signup']))
-    {
-        $username = trim($_POST['username']);
-        $email = trim($_POST['email']);
-        $pass = trim($_POST['pass']);
-    }
+if(isset($_POST['btn-signup'])) {
+    $username = trim($_POST['username']);
+    $email = trim($_POST['email']);
+    $pass = trim($_POST['pass']);
+
 //checking that the user has entered a value and/or a valid email address
-if($username=="") {
-    $error[] = "Please provide a username";
-}
-if($email =="") {
-    $error[] = "Please provide an email";
-}
-if($pass=="") {
-    $error[] = "Please provide a password";
-}
-else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $error[] = "Please enter a valid email";
-}
-else if(strlen($pass) < 8) {
-    $error[] = "Password must be at least 8 characters long";
-}
-//check if details entered have been taken by another user
-else
-    {
-        try
-        {
+    if ($username == "") {
+        $error[] = "Please provide a username";
+    }
+    if ($email == "") {
+        $error[] = "Please provide an email";
+    }
+    if ($pass == "") {
+        $error[] = "Please provide a password";
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error[] = "Please enter a valid email";
+    } else if (strlen($pass) < 8) {
+        $error[] = "Password must be at least 8 characters long";
+    } //check if details entered have been taken by another user
+    else {
+        try {
             //prepare statement to find matching username and emails
             $sqlQuery = $connection->prepare("SELECT Username, Email FROM Users WHERE Username=:username OR Email=:email");
             //execute statement and enter values into an array for easy access
-            $sqlQuery->execute(array(':username'=>$username, ':email'=>$email));
+            $sqlQuery->execute(array(':username' => $username, ':email' => $email));
             //fetches the associated rows
-            $row=$sqlQuery->fetch(PDO::FETCH_ASSOC);
+            $row = $sqlQuery->fetch(PDO::FETCH_ASSOC);
             //the checks
-            if($row['username']==$username) {
+            if ($row['Username'] == $username) {
                 $error[] = "That username has already been taken";
-            }
-            else if($row['email']==$email) {
+            } else if ($row['Email'] == $email) {
                 $error[] = "Sorry that email has already been taken";
-            }
-            else
-            {
+            } else {
                 //call register function if it passes then redirect them to homepage
-                if($user->register($username, $email, $pass))
-                {
-                    $user->redirect('index.php');
+                if ($user->register($username, $email, $pass)) {
+                    $user->redirect('index.php?registered');
                 }
 
 
             }
-        }
-        catch(PDOException $exception) {
+        } catch (PDOException $exception) {
             echo $exception->getMessage();
         }
     }
+}
 ?>
 <div class="container">
     <div class="form-container">
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <form method="post">
             <h2>Sign up.</h2><hr />
-
+            <?php
+            if(isset($error)) {
+                foreach($error as $error) {
+                    ?>
+                        <div class="alert alert-danger">
+                            <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; <?php echo $error; ?>
+                        </div>
+                    <?php
+                }
+            }
+            else if(isset($_GET['registered']))
+            {
+                ?>
+                    <div class="alert alert-info">
+                        <i class="glyphicon glyphicon-log-in"></i> &nbsp; Successfully registered <a href='index.php'>Login</a> here
+                    </div>
+                    <?php
+            }
+            ?>
 
             <div class="form-group">
                 <input type="text" class="form-control" name="username" placeholder="Enter Username" value="" />
@@ -88,4 +100,4 @@ else
         </form>
     </div>
 </div>
-<?php require('Views/footer.phtml') ?>
+<?php require('views/footer.phtml') ?>
