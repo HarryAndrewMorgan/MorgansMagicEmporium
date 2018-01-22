@@ -1,3 +1,25 @@
 <?php require('views/navbar.phtml') ?>
+<?php
+require_once 'connectdb.php';
+if(!$user->is_loggedin())
+{
+    $user->redirect('index.php');
+}
+$user_id = $_SESSION['username'];
+$sqlQuery = $DB_con->prepare("SELECT * FROM Users WHERE Username=:username");
+$sqlQuery->execute(array(":user_id"=>$user_id));
+$userRow=$sqlQuery->fetch(PDO::FETCH_ASSOC);
+?>
+    <title>welcome - <?php print($userRow['email']); ?></title>
 
-<?php require('Views/footer.phtml') ?>
+
+    <div class="right">
+        <label><a href="logout.php?logout=true"><i class="glyphicon glyphicon-log-out"></i> logout</a></label>
+    </div>
+</div>
+<div class="content">
+    Welcome : <?php print($userRow['username']); ?>
+</div>
+</body>
+</html>
+<?php require('views/footer.phtml') ?>

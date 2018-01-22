@@ -1,3 +1,9 @@
+<?php
+require_once 'models/connectdb.php';
+require_once ('models/User.php');
+$user = new User($connection);
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,6 +46,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Support</a>
                 </li>
+                <?php if(isset($_SESSION['username'])) echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"dashboard.php\">Dashboard</a></li>"?>
             </ul>
         </div>
     </div>
