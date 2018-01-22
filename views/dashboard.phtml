@@ -2,34 +2,59 @@
 <?php require_once ('models/connectdb.php');
 require_once ('models/User.php');
 $user = new User($connection);
-session_start();
 if(!isset($_SESSION['username']))
-{
-    //$user->redirect('index.php');
-}
-$username = $_SESSION['username'];
-$sqlQuery = $connection->prepare("SELECT * FROM Users WHERE Username=:username");
-$sqlQuery->execute(array(":username"=>$username));
-$userRow=$sqlQuery->fetch(PDO::FETCH_ASSOC);
+    {
+        $user->redirect('index.php');
+    }
 
+        $username = $_SESSION['username'];
+        $sqlQuery = $connection->prepare("SELECT * FROM Users WHERE Username=:username");
+        $sqlQuery->execute(array(":username"=>$username));
+        $userRow=$sqlQuery->fetch(PDO::FETCH_ASSOC);
 if(isset($_POST['logout']))
-{
-    $user->logout();
-    echo "logoutbeingcalled";
-}
+    {
+        $user->logout();
+        echo "logoutbeingcalled";
+    }
 ?>
-    <title>welcome - <?php print($userRow['email']); ?></title>
+<div class="container">
 
-<form method="post">
-    <button type="submit" id="logout" name="logout" class="btn btn-block btn-primary">
-        <i class="glyphicon glyphicon-log-out"></i>&nbsp;Logout
-    </button>
-</form>
+    <div class="row">
 
+        <div class="col-lg-3">
+
+            <h2 class="my-4">Your Account</h2>
+            <div class="list-group">
+                <a href="#" class="list-group-item">Account Details</a>
+                <a href="#" class="list-group-item">Create Advert</a>
+                <a href="#" class="list-group-item">Your Adverts</a>
+                <a href="#" class="list-group-item">Transactions</a>
+                <a href="#" class="list-group-item">Saved Adverts</a>
+            </div>
+
+        </div>
+        <div class="col-lg-9">
+
+            <div class="card card-outline-secondary my-4">
+                <div class="card-header">
+                    Account Details
+                </div>
+                <div class="card-body">
+                    <strong><p>Username:   </strong><?php print($userRow['Username']);?></p>
+                    <hr>
+                    <strong><p>Email:   </strong> <?php print($userRow['Email']);?></p>
+                    <hr>
+                    <a href="#" class="btn btn-success">Change Account Details</a>
+                    <hr>
+                    <form method="post">
+                        <button type="submit" id="logout" name="logout" class="btn btn-danger">Logout</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+    </div>
 </div>
-<div class="content">
-    Welcome : <?php print($userRow['Username']); ?>
-</div>
+
 </body>
 </html>
 <?php require('views/footer.phtml') ?>

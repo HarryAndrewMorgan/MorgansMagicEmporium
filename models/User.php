@@ -38,6 +38,7 @@ class User extends PDO
                 if(password_verify($pass, $userRow['Password']))
                 {
                     $_SESSION['user_session'] = $userRow['user_id'];
+                    $_SESSION['email'] = $email;
                     return true;
                 }
                 else
