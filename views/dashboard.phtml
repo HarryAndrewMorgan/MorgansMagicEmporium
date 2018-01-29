@@ -5,12 +5,14 @@ $user = new User($connection);
 if(!isset($_SESSION['username']))
     {
         $user->redirect('index.php');
+        exit;
     }
-
         $username = $_SESSION['username'];
-        $sqlQuery = $connection->prepare("SELECT * FROM Users WHERE Username=:username");
-        $sqlQuery->execute(array(":username"=>$username));
+        $email = $_SESSION['email'];
+        $sqlQuery = $connection->prepare("SELECT * FROM Users WHERE Username=".$username);
+        $sqlQuery->execute(array(":user"=>$username));
         $userRow=$sqlQuery->fetch(PDO::FETCH_ASSOC);
+        echo $userRow;
 if(isset($_POST['logout']))
     {
         $user->logout();
@@ -40,9 +42,9 @@ if(isset($_POST['logout']))
                     Account Details
                 </div>
                 <div class="card-body">
-                    <strong><p>Username:   </strong><?php print($userRow['Username']);?></p>
+                    <strong><p>Username:   </strong><?php echo $_SESSION['username'];?>
                     <hr>
-                    <strong><p>Email:   </strong> <?php print($userRow['Email']);?></p>
+                    <strong><p>Email:   </strong> <?php echo $_SESSION['email'];?>
                     <hr>
                     <a href="#" class="btn btn-success">Change Account Details</a>
                     <hr>
