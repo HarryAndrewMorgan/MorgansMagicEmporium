@@ -1,33 +1,5 @@
-<?php require('views/navbar.phtml');
-require_once ('models/connectdb.php');
-require_once ('models/User.php');
-$user = new User($connection);
-    if($user->is_loggedin()!="")
-    {
-        $user->redirect('index.php');
-    }
-    if(isset($_POST['btn-login']))
-    {
-        $username = $_POST['username'];
-        $email = $_POST['username'];
-        $pass = $_POST['password'];
-        $userMail = $_POST['email'];
+<?php require('views/navbar.phtml');?>
 
-
-    if($user->login($username,$email,$pass))
-    {
-        $user->redirect('index.php');
-        $_SESSION['username'] = $username;
-        $_SESSION['email'] = $userMail;
-
-    }
-
-    else
-    {
-        $error = "Wrong Details !";
-    }
-}
-?>
 
 <div class="container">
     <div class="form-container">
