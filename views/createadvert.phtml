@@ -1,0 +1,56 @@
+<?php require('views/navbar.phtml');?>
+<?php require('views/dashnav.phtml');?>
+<div class="col-lg-9">
+
+    <div class="card mt-4">
+        <form method="post">
+        <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+        <div class="card-body">
+            <div class="form-group">
+                <input type="text" class="form-control" name="productname" placeholder="Product Name" required />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="productprice" placeholder="Product Price" required />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="productdescription" placeholder="Product Description" required />
+            </div>
+
+        </div>
+    </div>
+    <!-- /.card -->
+
+    <div class="card card-outline-secondary my-4">
+        <div class="card-header">
+            Your Details (this will be visible to other users so that they can contact you)
+        </div>
+        <div class="card-body">
+            <p>User details will be displayed here so others can contact them</p>
+            <hr>
+            <a href="#" class="btn btn-success">Contact Seller</a>
+            <a href="#" class="btn btn-success">Save Advert</a>
+        </div>
+    </div>
+</form>
+    <!-- /.card -->
+
+</div>
+<!-- /.col-lg-9 -->
+
+</div>
+
+</div>
+<!-- /.container -->
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+
+<?php require('views/footer.phtml') ?>
+
+
+
+
