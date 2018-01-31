@@ -32,7 +32,7 @@ class User extends PDO
             $userRow = $sqlQuery->fetch(PDO::FETCH_ASSOC);
             if ($sqlQuery->rowCount() > 0) {
                 if (password_verify($pass, $userRow['Password'])) {
-                    $_SESSION['user_session'] = $userRow['Username'];
+                    $_SESSION['user_session'] = $userRow['username'];
                     $_SESSION['email'] = $email;
                     return true;
                 } else {

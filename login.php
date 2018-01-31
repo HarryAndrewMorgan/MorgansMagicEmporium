@@ -17,8 +17,8 @@ if(isset($_POST['btn-login']))
     if($user->login($username,$email,$pass))
     {
         session_start();
-        $_SESSION['username'] = $username;
-        $_SESSION['email'] = $userMail;
+        $_SESSION['Username'] = $username;
+        $_SESSION['Email'] = $userMail;
         $user->redirect('index.php');
     }
     else
