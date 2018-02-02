@@ -7,15 +7,24 @@
         <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
         <div class="card-body">
             <div class="form-group">
-                <input type="text" class="form-control" name="productname" placeholder="Product Name" required />
+                <input type="text" class="form-control" name="name" placeholder="Product Name" required />
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="productprice" placeholder="Product Price" required />
+                <input type="text" class="form-control" name="price" placeholder="Product Price" required />
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="productdescription" placeholder="Product Description" required />
+                <input type="text" class="form-control" name="description" placeholder="Product Description" required />
             </div>
-
+            <p>Product Type:</p>
+            <div class="form-group">
+                <input type ="radio" id="singles" name="type" value="singles"><label for="singles">Singles</label>
+            </div>
+            <div class="form-group">
+                <input type ="radio" id="boosters" name="type" value="boosters"><label for="boosters"> Boosters</label>
+            </div>
+            <div class="form-group">
+                <input type ="radio" id="accessories" name="type" value="accessories"><label for="accessories">Accessories</label>
+            </div>
         </div>
     </div>
     <!-- /.card -->
@@ -25,10 +34,9 @@
             Your Details (this will be visible to other users so that they can contact you)
         </div>
         <div class="card-body">
-            <p>User details will be displayed here so others can contact them</p>
+            <p>Your details will be displayed here so others can contact you</p>
             <hr>
-            <a href="#" class="btn btn-success">Contact Seller</a>
-            <a href="#" class="btn btn-success">Save Advert</a>
+            <a href="youradverts.php" class="btn btn-success" name="brn-create">Submit Advert</a>
         </div>
     </div>
 </form>

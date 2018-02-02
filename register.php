@@ -13,6 +13,8 @@ if(isset($_POST['btn-signup'])) {
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
     $pass = trim($_POST['pass']);
+    $address = trim($_POST['address']);
+    $phone = trim($_POST['phone']);
 
 //checking that the user has entered a value and/or a valid email address
     if ($username == "") {
@@ -27,7 +29,12 @@ if(isset($_POST['btn-signup'])) {
         $error[] = "Please enter a valid email";
     } else if (strlen($pass) < 8) {
         $error[] = "Password must be at least 8 characters long";
-    } //check if details entered have been taken by another user
+    } else if($address == "") {
+        $error[] = "Please provide a postcode";
+    } else if($phone == "") {
+        $error[] = "Please provide a phone number";
+    }
+    //check if details entered have been taken by another user
     else {
         try {
             //prepare statement to find matching username and emails
@@ -43,7 +50,7 @@ if(isset($_POST['btn-signup'])) {
                 $error[] = "Sorry that email has already been taken";
             } else {
                 //call register function if it passes then redirect them to homepage
-                if ($user->register($username, $email, $pass)) {
+                if ($user->register($username, $email, $pass, $address, $phone)) {
                     $user->redirect('index.php');
                 }
 
