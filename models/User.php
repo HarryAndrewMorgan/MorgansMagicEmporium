@@ -8,14 +8,16 @@ class User extends PDO
         $this->db = $connection;
     }
 
-    public function register($username, $email, $pass)
+    public function register($username, $email, $pass, $address, $phone)
     {
         try {
             $hashedpassword = password_hash($pass, PASSWORD_DEFAULT);
-            $sqlQuery = $this->db->prepare("INSERT INTO Users(Username,Email,Password) VALUES(:username, :email, :pass)");
+            $sqlQuery = $this->db->prepare("INSERT INTO Users(Username,Email,Password, Address, Phone) VALUES(:username, :email, :pass, :address, :phone)");
             $sqlQuery->bindparam(":username", $username);
             $sqlQuery->bindparam(":email", $email);
             $sqlQuery->bindparam(":pass", $hashedpassword);
+            $sqlQuery->bindparam(":address", $address);
+            $sqlQuery->bindparam(":phone", $phone);
             $sqlQuery->execute();
 
         } catch (PDOException $exception) {
@@ -64,4 +66,14 @@ class User extends PDO
         session_destroy();
         $this->redirect('index.php');
     }
+    public function fetchAUser()
+    {
+        $username = $_SESSION['Username'];
+        $sqlQuery = $this->db->prepare("SELECT * FROM Users WHERE Username LIKE '$username'");
+        $sqlQuery->execute();
+        $result = $sqlQuery->fetch(PDO::FETCH_ASSOC);
+        $_SESSION['Address'] = $result['Address'];
+        $_SESSION['Phone'] = $result['Phone'];
+    }
 }
+
