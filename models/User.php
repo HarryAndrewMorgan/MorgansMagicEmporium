@@ -74,6 +74,7 @@ class User extends PDO
         $result = $sqlQuery->fetch(PDO::FETCH_ASSOC);
         $_SESSION['Address'] = $result['Address'];
         $_SESSION['Phone'] = $result['Phone'];
+        $_SESSION['UserID'] = $result['UserID'];
     }
 }
 
