@@ -10,19 +10,22 @@ class Advert extends PDO
 
     public function createAdvert($name, $price, $description, $type, $userID)
     {
-        try {
-            $sqlQuery = $this->db->prepare("INSERT INTO Adverts(AdvertName,AdvertPrice,AdvertDescription, AdvertType, UserID) VALUES(:aname, :price, :description, :type, :userID)");
-            $sqlQuery->bindparam(":aname", $name);
-            $sqlQuery->bindparam(":price", $price);
-            $sqlQuery->bindparam(":description", $description);
-            $sqlQuery->bindparam(":type", $type);
-            $sqlQuery->bindparam(":userID", $userID);
-            $sqlQuery->execute();
+        {
+            try {
+                $sqlQuery = $this->db->prepare("INSERT INTO Adverts(AdvertName,AdvertPrice,AdvertDescription, AdvertType, UserID, AdvertPhoto) VALUES(:aname, :price, :description, :type, :userID)");
+                $sqlQuery->bindparam(":aname", $name);
+                $sqlQuery->bindparam(":price", $price);
+                $sqlQuery->bindparam(":description", $description);
+                $sqlQuery->bindparam(":type", $type);
+                $sqlQuery->bindparam(":userID", $userID);;
+                $sqlQuery->execute();
 
 
-        } catch (PDOException $exception) {
-            echo $exception->getMessage();
+            } catch (PDOException $exception) {
+                echo $exception->getMessage();
+            }
         }
+
 
     }
 
