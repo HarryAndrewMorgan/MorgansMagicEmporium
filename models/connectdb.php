@@ -1,4 +1,4 @@
-<?php
+ <?php
 $host = "helios.csesalford.com";
 $dbname = "stc628";
 $user = "stc628";

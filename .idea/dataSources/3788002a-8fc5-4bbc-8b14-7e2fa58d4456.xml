@@ -41,9 +41,9 @@
       <Position>6</Position>
       <DataType>int(4)|0</DataType>
     </column>
-    <column id="13" parent="5" name="AdvertPhoto">
+    <column id="13" parent="5" name="PhotoName">
       <Position>7</Position>
-      <DataType>blob|0</DataType>
+      <DataType>varchar(60)|0</DataType>
     </column>
     <index id="14" parent="5" name="UserID">
       <ColNames>UserID</ColNames>
