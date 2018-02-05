@@ -12,12 +12,12 @@ class Advert extends PDO
     {
         {
             try {
-                $sqlQuery = $this->db->prepare("INSERT INTO Adverts(AdvertName,AdvertPrice,AdvertDescription, AdvertType, UserID, AdvertPhoto) VALUES(:aname, :price, :description, :type, :userID)");
+                $sqlQuery = $this->db->prepare("INSERT INTO Adverts(AdvertName,AdvertPrice,AdvertDescription, AdvertType, UserID) VALUES(:aname, :price, :description, :type, :userID)");
                 $sqlQuery->bindparam(":aname", $name);
                 $sqlQuery->bindparam(":price", $price);
                 $sqlQuery->bindparam(":description", $description);
                 $sqlQuery->bindparam(":type", $type);
-                $sqlQuery->bindparam(":userID", $userID);;
+                $sqlQuery->bindparam(":userID", $userID);
                 $sqlQuery->execute();
 
 
@@ -45,6 +45,7 @@ class Advert extends PDO
             echo $advert['AdvertDescription'];
             echo $advert['AdvertType'];
             echo $advert['UserID'];
+            echo $advert['PhotoName'];
         }
 
     }
@@ -77,5 +78,12 @@ class Advert extends PDO
         $sqlQuery->execute();
         $results = $sqlQuery->fetchAll(PDO::FETCH_ASSOC);
         return $results;
+    }
+    public function getPhotoName()
+    {
+        $sqlQuery = $this->db->prepare("SELECT * FROM Adverts");
+        $sqlQuery->execute();
+        $results = $sqlQuery->fetch(PDO::FETCH_ASSOC);
+        echo $results['PhotoName'];
     }
 }

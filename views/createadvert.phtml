@@ -3,7 +3,7 @@
 <div class="col-lg-9">
 
     <div class="card mt-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
         <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
         <div class="card-body">
             <div class="form-group">
@@ -29,9 +29,9 @@
             <div class="form-group">
                 <input type ="radio" id="accessories" name="type" value="Accessories"><label for="accessories">Accessories</label>
             </div>
-            <button type="submit" class="btn btn-block btn-primary" name="btn-create">
-                <i class="glyphicon glyphicon-open-file"></i>&nbsp;Create Advert
-            </button>
+            <div class="form-group">
+            <input type="submit" class="btn btn-block btn-primary" name="btn-create" value="Create Advert" required/>
+            </div>
         </div>
     </div>
     <!-- /.card -->
