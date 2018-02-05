@@ -8,5 +8,4 @@ $_dbHandle = Database::getInstance()->getdbConnection();
 $advert = new Advert($_dbHandle);
 $view->numberOfRows = $advert->countAdverts();
 $view->adverts = $advert->returnAdverts();
-$view->pageTitle = 'Your Adverts';
 require_once('Views/youradverts.phtml');

@@ -76,14 +76,11 @@ class Advert extends PDO
     {
         $sqlQuery = $this->db->prepare("SELECT * FROM Adverts");
         $sqlQuery->execute();
-        $results = $sqlQuery->fetchAll(PDO::FETCH_ASSOC);
+        $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
-    public function getPhotoName()
+    public function getAdvertForUser($userID)
     {
-        $sqlQuery = $this->db->prepare("SELECT * FROM Adverts");
-        $sqlQuery->execute();
-        $results = $sqlQuery->fetch(PDO::FETCH_ASSOC);
-        echo $results['PhotoName'];
+
     }
 }
