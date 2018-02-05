@@ -1,18 +1,20 @@
 <?php
+require_once ('Models/Database.php');
 class User extends PDO
 {
-    private $db;
 
-    function __construct($connection)
+    protected $_dbHandle, $_dbInstance;
+
+    function __construct($_dbhandle)
     {
-        $this->db = $connection;
+        $this->db = $_dbhandle;
     }
 
     public function register($username, $email, $pass, $address, $phone)
     {
         try {
             $hashedpassword = password_hash($pass, PASSWORD_DEFAULT);
-            $sqlQuery = $this->db->prepare("INSERT INTO Users(Username,Email,Password, Address, Phone) VALUES(:username, :email, :pass, :address, :phone)");
+            $sqlQuery = $this->_dbHandle->prepare("INSERT INTO Users(Username,Email,Password, Address, Phone) VALUES(:username, :email, :pass, :address, :phone)");
             $sqlQuery->bindparam(":username", $username);
             $sqlQuery->bindparam(":email", $email);
             $sqlQuery->bindparam(":pass", $hashedpassword);
@@ -29,7 +31,7 @@ class User extends PDO
     public function login($username, $email, $pass)
     {
         try {
-            $sqlQuery = $this->db->prepare("SELECT * FROM Users WHERE Username=:username OR Email=:email LIMIT 1");
+            $sqlQuery = $this->_dbHandle->prepare("SELECT * FROM Users WHERE Username=:username OR Email=:email LIMIT 1");
             $sqlQuery->execute(array(':username' => $username, ':email' => $email));
             $userRow = $sqlQuery->fetch(PDO::FETCH_ASSOC);
             if ($sqlQuery->rowCount() > 0) {
@@ -69,12 +71,23 @@ class User extends PDO
     public function fetchAUser()
     {
         $username = $_SESSION['Username'];
-        $sqlQuery = $this->db->prepare("SELECT * FROM Users WHERE Username LIKE '$username'");
+        $sqlQuery = $this->_dbHandle->prepare("SELECT * FROM Users WHERE Username LIKE '$username'");
         $sqlQuery->execute();
         $result = $sqlQuery->fetch(PDO::FETCH_ASSOC);
         $_SESSION['Address'] = $result['Address'];
         $_SESSION['Phone'] = $result['Phone'];
         $_SESSION['UserID'] = $result['UserID'];
+    }
+    public function fetchAllUsers()
+    {
+        $sqlQuery = $this->_dbHandle->prepare("SELECT * FROM Users");
+        $sqlQuery->execute();
+
+        $dataSet = [];
+        while($row = $sqlQuery->fetch()) {
+            $dataSet[] = new UserData($row);
+        }
+        return $dataSet;
     }
 }
 

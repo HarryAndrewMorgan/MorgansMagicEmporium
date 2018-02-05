@@ -1,7 +1,8 @@
 <?php
-require_once ('models/connectdb.php');
+require_once ('models/Database.php');
 require_once ('models/User.php');
-$user = new User($connection);
+$_dbHandle = Database::getInstance()->getdbConnection();
+$user = new User($_dbHandle);
 if($user->is_loggedin()!="")
 {
     $user->redirect('index.php');

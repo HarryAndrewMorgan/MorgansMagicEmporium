@@ -3,9 +3,9 @@ class Advert extends PDO
 {
     private $db;
 
-    function __construct($connection)
+    function __construct($_dbhandle)
     {
-        $this->db = $connection;
+        $this->db = $_dbhandle;
     }
 
     public function createAdvert($name, $price, $description, $type, $userID)
@@ -52,10 +52,10 @@ class Advert extends PDO
 
     public function countAdverts()
     {
-       $sqlQuery = $this->db->prepare("SELECT COUNT(*) FROM Adverts");
-       $sqlQuery->execute();
-       $rows = $sqlQuery->fetch(PDO::FETCH_ASSOC);
-       return $rows;
+        $sqlQuery = $this->db->prepare("SELECT COUNT(*) FROM Adverts");
+        $sqlQuery->execute();
+        $rows = $sqlQuery->fetch(PDO::FETCH_ASSOC);
+        return $rows;
 
     }
     public function printAdverts()
