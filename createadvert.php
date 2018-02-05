@@ -10,12 +10,10 @@ if(isset($_POST['btn-create']))
     $price = trim($_POST['price']);
     $description = trim($_POST['description']);
     $type = trim($_POST['type']);
-    //$picture = $_FILES['file']['name'];
-    //$data = file_get_contents($_FILES["file"]["tmp_name"]);
-    $imgtype = $_FILES["file"]["type"];
+    $picture = $_FILES['file']['name'];
     $userID = $_SESSION['UserID'];
     try {
-        if ($advert->createAdvert($name, $price, $description, $type, $userID)) {
+        if ($advert->createAdvert($name, $price, $description, $type, $userID, $picture)) {
             $advert->redirect('youradverts.php');
         }
     } catch (PDOException $exception) {

@@ -7,7 +7,7 @@ class User extends PDO
 
     function __construct($_dbhandle)
     {
-        $this->db = $_dbhandle;
+        $this->_dbHandle = $_dbhandle;
     }
 
     public function register($username, $email, $pass, $address, $phone)

@@ -39,7 +39,7 @@ if(isset($_POST['btn-signup'])) {
     else {
         try {
             //prepare statement to find matching username and emails
-            $sqlQuery = $connection->prepare("SELECT Username, Email FROM Users WHERE Username=:username OR Email=:email");
+            $sqlQuery = $_dbHandle->prepare("SELECT Username, Email FROM Users WHERE Username=:username OR Email=:email");
             //execute statement and enter values into an array for easy access
             $sqlQuery->execute(array(':username' => $username, ':email' => $email));
             //fetches the associated rows

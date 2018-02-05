@@ -8,16 +8,17 @@ class Advert extends PDO
         $this->db = $_dbhandle;
     }
 
-    public function createAdvert($name, $price, $description, $type, $userID)
+    public function createAdvert($name, $price, $description, $type, $userID, $picture)
     {
         {
             try {
-                $sqlQuery = $this->db->prepare("INSERT INTO Adverts(AdvertName,AdvertPrice,AdvertDescription, AdvertType, UserID) VALUES(:aname, :price, :description, :type, :userID)");
+                $sqlQuery = $this->db->prepare("INSERT INTO Adverts(AdvertName,AdvertPrice,AdvertDescription, AdvertType, UserID, PhotoName) VALUES(:aname, :price, :description, :type, :userID, :picture)");
                 $sqlQuery->bindparam(":aname", $name);
                 $sqlQuery->bindparam(":price", $price);
                 $sqlQuery->bindparam(":description", $description);
                 $sqlQuery->bindparam(":type", $type);
                 $sqlQuery->bindparam(":userID", $userID);
+                $sqlQuery->bindparam(":picture", $picture);
                 $sqlQuery->execute();
 
 
@@ -81,6 +82,10 @@ class Advert extends PDO
     }
     public function getAdvertForUser($userID)
     {
-
+        $sqlQuery = $this->db->prepare("SELECT * FROM Adverts WHERE UserID=:userID");
+        $sqlQuery->bindparam(":userID", $userID);
+        $sqlQuery->execute();
+        $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
+        return $results;
     }
 }
