@@ -11,9 +11,7 @@ if(!isset($_SESSION['Username']))
 }
 $username = $_SESSION['Username'];
 $email = $_SESSION['Email'];
-$sqlQuery = $_dbHandle->prepare("SELECT * FROM Users WHERE Username=".$username);
-$sqlQuery->execute(array(":user"=>$username));
-$userRow=$sqlQuery->fetch(PDO::FETCH_ASSOC);
+$user->fetchAUser($username);
 
 if(isset($_POST['logout']))
 {
