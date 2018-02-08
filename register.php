@@ -11,11 +11,11 @@ if($user->is_loggedin()!="")
 
 //trimming the submitted data into post variables
 if(isset($_POST['btn-signup'])) {
-    $username = trim($_POST['username']);
-    $email = trim($_POST['email']);
-    $pass = trim($_POST['pass']);
-    $address = trim($_POST['address']);
-    $phone = trim($_POST['phone']);
+    $username = (trim($_POST['username'], ENT_NOQUOTES));
+    $email = (trim($_POST['email'], ENT_NOQUOTES));
+    $pass = (trim($_POST['pass'], ENT_NOQUOTES));
+    $address = (trim($_POST['address'], ENT_NOQUOTES));
+    $phone = (trim($_POST['phone'], ENT_NOQUOTES));
 
 //checking that the user has entered a value and/or a valid email address
     if ($username == "") {

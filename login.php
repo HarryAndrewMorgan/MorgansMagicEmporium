@@ -9,10 +9,10 @@ if($user->is_loggedin()!="")
 }
 if(isset($_POST['btn-login']))
 {
-    $username = $_POST['username'];
-    $email = $_POST['username'];
-    $pass = $_POST['password'];
-    $userMail = $_POST['email'];
+    $username = (trim($_POST['username'], ENT_NOQUOTES));
+    $email = (trim($_POST['username'], ENT_NOQUOTES));
+    $pass = (trim($_POST['username'], ENT_NOQUOTES));
+    $userMail = (trim($_POST['username'], ENT_NOQUOTES));
 
 
     if($user->login($username,$email,$pass))
