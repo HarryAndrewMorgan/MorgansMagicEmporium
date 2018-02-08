@@ -6,12 +6,13 @@ $_dbHandle = Database::getInstance()->getdbConnection();
 $advert = new Advert($_dbHandle);
 if(isset($_POST['btn-create']))
 {
-    $name = trim($_POST['name']);
-    $price = trim($_POST['price']);
-    $description = trim($_POST['description']);
-    $type = trim($_POST['type']);
+    $name = (trim($_POST['name'], ENT_NOQUOTES));
+    $price = (trim($_POST['price'],ENT_NOQUOTES));
+    $description = (trim($_POST['description'],ENT_NOQUOTES));
+    $type = (trim($_POST['type'],ENT_NOQUOTES));
     $picture = $_FILES['file']['name'];
     $userID = $_SESSION['UserID'];
+    
     try {
         if ($advert->createAdvert($name, $price, $description, $type, $userID, $picture)) {
             $advert->redirect('youradverts.php');
