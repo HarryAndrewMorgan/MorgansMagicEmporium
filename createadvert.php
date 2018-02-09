@@ -12,7 +12,7 @@ if(isset($_POST['btn-create']))
     $type = (trim($_POST['type'],ENT_NOQUOTES));
     $picture = $_FILES['file']['name'];
     $userID = $_SESSION['UserID'];
-    
+
     try {
         if ($advert->createAdvert($name, $price, $description, $type, $userID, $picture)) {
             $advert->redirect('youradverts.php');

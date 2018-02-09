@@ -88,4 +88,12 @@ class Advert extends PDO
         $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
+    public function returnAdvert($advertID)
+    {
+        $sqlQuery = $this->db->prepare("SELECT * FROM Adverts WHERE AdvertID=:advertID");
+        $sqlQuery->bindparam(":advertID", $advertID);
+        $sqlQuery->execute();
+        $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
+        return $results;
+    }
 }

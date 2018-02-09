@@ -1,5 +1,5 @@
 <?php
-require_once ('Models/Database.php');
+require_once ('models/Database.php');
 class User extends PDO
 {
 
@@ -38,6 +38,7 @@ class User extends PDO
                 if (password_verify($pass, $userRow['Password'])) {
                     $_SESSION['user_session'] = $userRow['username'];
                     $_SESSION['email'] = $email;
+                    echo "hi";
                     return true;
                 } else {
                     return false;
