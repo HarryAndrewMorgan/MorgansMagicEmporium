@@ -3,6 +3,7 @@ require_once ('models/Database.php');
 require_once ('models/User.php');
 $_dbHandle = Database::getInstance()->getdbConnection();
 $user = new User($_dbHandle);
+var_dump($_POST);
 if($user->is_loggedin()!="")
 {
     $user->redirect('index.php');
@@ -10,9 +11,10 @@ if($user->is_loggedin()!="")
 if(isset($_POST['btn-login']))
 {
     $username = (trim($_POST['username'], ENT_NOQUOTES));
-    $email = (trim($_POST['username'], ENT_NOQUOTES));
-    $pass = (trim($_POST['username'], ENT_NOQUOTES));
+    $email = (trim($_POST['email'], ENT_NOQUOTES));
+    $pass = (trim($_POST['password'], ENT_NOQUOTES));
     $userMail = (trim($_POST['username'], ENT_NOQUOTES));
+
 
 
     if($user->login($username,$email,$pass))
