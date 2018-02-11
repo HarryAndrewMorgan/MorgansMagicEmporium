@@ -70,7 +70,6 @@ class Advert extends PDO
         $sqlQuery = $this->db->prepare("SELECT * FROM Adverts INNER JOIN Users ON Adverts.UserID = Users.UserID WHERE AdvertID='$advertID'");
         $sqlQuery->execute();
         $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
-        print_r($results);
         return $results;
     }
 
