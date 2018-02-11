@@ -96,4 +96,12 @@ class Advert extends PDO
         $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
         return $results;
     }
+
+    public function filterAdverts($type)
+    {
+        $sqlQuery = $this->db->prepare("SELECT * FROM Adverts WHERE AdvertType='$type'");
+        $sqlQuery->execute();
+        $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
+        return $results;
+    }
 }

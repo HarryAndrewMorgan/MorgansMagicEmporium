@@ -4,7 +4,6 @@ require_once ('models/User.php');
 session_start();
 $_dbHandle = Database::getInstance()->getdbConnection();
 $user = new User($_dbHandle);
-var_dump($_POST);
 //if user is logged in redirect them to index
 if($user->is_loggedin()!="")
 {
