@@ -50,29 +50,6 @@ class Advert extends PDO
         }
 
     }
-
-    public function countAdverts()
-    {
-        $sqlQuery = $this->db->prepare("SELECT COUNT(*) FROM Adverts");
-        $sqlQuery->execute();
-        $rows = $sqlQuery->fetch(PDO::FETCH_ASSOC);
-        return $rows;
-
-    }
-    public function printAdverts()
-    {
-        $numberOfRows = $this->countAdverts();
-        $advert = $this->fetchAllAdverts();
-        for($i = 0; $i <= $numberOfRows; $i++)
-        {
-            echo $advert['AdvertName'];
-            echo $advert['AdvertPrice'];
-            echo $advert['AdvertDescription'];
-            echo $advert['AdvertType'];
-            return $advert;
-
-        }
-    }
     public function returnAdverts()
     {
         $sqlQuery = $this->db->prepare("SELECT * FROM Adverts");
@@ -90,16 +67,23 @@ class Advert extends PDO
     }
     public function returnAdvert($advertID)
     {
-        $sqlQuery = $this->db->prepare("SELECT * FROM Adverts WHERE AdvertID=:advertID");
-        $sqlQuery->bindparam(":advertID", $advertID);
+        $sqlQuery = $this->db->prepare("SELECT * FROM Adverts INNER JOIN Users ON Adverts.UserID = Users.UserID WHERE AdvertID='$advertID'");
         $sqlQuery->execute();
         $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
+        print_r($results);
         return $results;
     }
 
     public function filterAdverts($type)
     {
         $sqlQuery = $this->db->prepare("SELECT * FROM Adverts WHERE AdvertType='$type'");
+        $sqlQuery->execute();
+        $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
+        return $results;
+    }
+    public function fetchUserForAdvert($advertId, $userId)
+    {
+        $sqlQuery = $this->db->prepare("SELECT * FROM Adverts WHERE AdvertID='$advertId' AND UserID='$userId'");
         $sqlQuery->execute();
         $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
         return $results;

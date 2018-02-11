@@ -5,8 +5,6 @@ require_once ('models/Database.php');
 require_once ('models/Advert.php');
 $_dbHandle = Database::getInstance()->getdbConnection();
 $advert = new Advert($_dbHandle);
-$view->numberOfRows = $advert->countAdverts();
-
 $type="Singles";
 if(isset($_GET['filter']))
 {
@@ -22,7 +20,6 @@ if(isset($_GET['filter']))
         $_SESSION['filterName'] = "Accessories";
     }
 }
-
 $view->adverts = $advert->filterAdverts($type);
 $view->pageTitle = 'Homepage';
 require_once('Views/index.phtml');
