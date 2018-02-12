@@ -10,8 +10,8 @@
             <div class=\"col-lg-3\">
             <h1 class=\"my-4\">Listing Number: $advert->AdvertID</h1>
             <div class=\"list-group\">
-            <a href=\"#\" class=\"list-group-item active\">Contact Seller</a>
-                <a href=\"#\" class=\"list-group-item\">Save Advert</a>
+            <button type=\"submit\" name=\"contactseller\" class=\"list-group-item\" value=\"Contact Seller\">Contact Seller</button>
+                <button type=\"submit\" name=\"save\" class=\"list-group-item\" value=\"Save Advert\">Save Advert</button>
             </div>
             </div>
             <!-- /.col-lg-3 -->
@@ -39,7 +39,7 @@
                     <strong><p>Postcode:   </strong>$advert->Address
                     <hr>
                     <strong><p>Phone Number:   </strong>$advert->Phone
-                    <hr>";
+                    ";
                         }
                         else echo "Seller details are available upon registration";
                         ?>
