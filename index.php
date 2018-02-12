@@ -21,6 +21,12 @@ if(isset($_GET['filter']))
     }
 }
 $view->adverts = $advert->filterAdverts($type);
+if(isset($_GET['search']))
+{
+    $query = (trim($_GET['query'], ENT_NOQUOTES));
+    $view->adverts = $advert->searchAdverts($query);
+}
+
 $view->pageTitle = 'Homepage';
 require_once('Views/index.phtml');
 

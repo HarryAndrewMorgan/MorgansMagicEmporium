@@ -16,3 +16,6 @@ body {
 #nomargin {
   float: left;
 }
+#search {
+  text-overline-color: black;
+}

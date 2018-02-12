@@ -29,12 +29,10 @@ class Advert extends PDO
 
 
     }
-
     public function redirect($url)
     {
         header("Location: $url");
     }
-
     public function fetchAllAdverts()
     {
         $sqlQuery = $this->db->prepare("SELECT * FROM Adverts");
@@ -83,6 +81,13 @@ class Advert extends PDO
     public function fetchUserForAdvert($advertId, $userId)
     {
         $sqlQuery = $this->db->prepare("SELECT * FROM Adverts WHERE AdvertID='$advertId' AND UserID='$userId'");
+        $sqlQuery->execute();
+        $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
+        return $results;
+    }
+    public function searchAdverts($query)
+    {
+        $sqlQuery = $this->db->prepare("SELECT * FROM Adverts WHERE AdvertName LIKE '$query'");
         $sqlQuery->execute();
         $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
         return $results;
