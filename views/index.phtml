@@ -6,12 +6,18 @@
 
         <div class="col-lg-3">
 
-          <h1 class="my-4">Singles</h1>
-          <div class="list-group">
-            <a href="#" class="list-group-item">Singles</a>
-            <a href="#" class="list-group-item">Booster Packs</a>
-            <a href="#" class="list-group-item">Accessories</a>
-          </div>
+          <h1 class="my-4"><?php echo $_SESSION['filterName']?></h1>
+            <form action="post">
+                <div class="list-group">
+                    <a href="?filter=1" class="list-group-item" name="filter1">Singles</a>
+                    <a href="?filter=2" class="list-group-item" name="filter2">Booster Packs</a>
+                    <a href="?filter=3" class="list-group-item" name="filter3">Accessories</a>
+                    <input type="text" placeholder="Search..." id="search" class="list-group-item" name="query">
+                    <br>
+                    <input type="submit" value="Search" class="btn btn-block btn-primary" name="search"/>
+                </div>
+            </form>
+
 
         </div>
         <!-- /.col-lg-3 -->
@@ -53,10 +59,11 @@
               {
                   echo "<div class=\"col-lg-4 col-md-6 mb-4\">
                <div class=\"card h-100\">
-               <a href=\"advert.php\"><img class=\"card-img-top\" src=\"img/$advert->PhotoName\"  alt=\"\"></a>
+               <a href=\"advert.php?id=$advert->AdvertID\"><img class=\"card-img-top\" src=\"img/$advert->PhotoName\"  alt=\"\" name></a>
                <div class=\"card-body\">
                <h4 class=\"card-title\">
-               <a href=\"advert.php\">$advert->AdvertName</a>
+               
+               <a href=\"advert.php?id=$advert->AdvertID\">$advert->AdvertName</a>
                </h4>
                <h5>£ $advert->AdvertPrice</h5>
                <p class=\"card-text\">$advert->AdvertDescription</p>

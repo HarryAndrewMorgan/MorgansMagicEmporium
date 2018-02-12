@@ -69,6 +69,7 @@ class User extends PDO
         session_destroy();
         $this->redirect('index.php');
     }
+
     public function fetchAUser()
     {
         $username = $_SESSION['Username'];
@@ -79,16 +80,46 @@ class User extends PDO
         $_SESSION['Phone'] = $result['Phone'];
         $_SESSION['UserID'] = $result['UserID'];
     }
+
     public function fetchAllUsers()
     {
         $sqlQuery = $this->_dbHandle->prepare("SELECT * FROM Users");
         $sqlQuery->execute();
 
         $dataSet = [];
-        while($row = $sqlQuery->fetch()) {
+        while ($row = $sqlQuery->fetch()) {
             $dataSet[] = new UserData($row);
         }
         return $dataSet;
+    }
+
+    public function checkDuplicateDetails($username, $email)
+    {
+        //prepare statement to find matching username and emails
+        $sqlQuery = $this->_dbHandle->prepare("SELECT Username, Email FROM Users WHERE Username=:username OR Email=:email");
+        //execute statement and enter values into an array for easy access
+        $sqlQuery->execute(array(':username' => $username, ':email' => $email));
+        //fetches the associated rows
+        $row = $sqlQuery->fetch(PDO::FETCH_ASSOC);
+        //the checks
+        if ($row['Username'] == $username) {
+            $error[] = "That username has already been taken";
+        } else if ($row['Email'] == $email) {
+            $error[] = "Sorry that email has already been taken";
+        } else return true;
+    }
+
+    public function checkDuplicateUser($username, $email)
+    {
+        $sqlQuery = $this->_dbHandle->prepare("SELECT Username, Email FROM Users WHERE Username='$username' OR Email='$email'");
+        $sqlQuery->execute();
+        $row = $sqlQuery->fetch(PDO::FETCH_ASSOC);
+        if($row['Username'] == $username || $row['Email'] == $email)
+        {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
 
