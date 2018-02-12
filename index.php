@@ -6,6 +6,7 @@ require_once ('models/Advert.php');
 $_dbHandle = Database::getInstance()->getdbConnection();
 $advert = new Advert($_dbHandle);
 $type="Singles";
+$_SESSION['filterName'] = "Singles";
 if(isset($_GET['filter']))
 {
     $filter = $_GET['filter'];

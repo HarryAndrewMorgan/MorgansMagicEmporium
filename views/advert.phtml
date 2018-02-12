@@ -3,7 +3,7 @@
 
 
 
-            <?php  {
+            <?php
                 foreach($view->adverts as $advert)
                 echo "<div class=\"container\">
             <div class=\"row\">
@@ -29,15 +29,23 @@
             <div class=\"card-header\">
             Seller Details
             </div>
-            <div class=\"card-body\">
-            <strong><p>Username:   </strong>$advert->Username
+            <div class=\"card-body\">"?>
+                    <?php if(isset($_SESSION['Username']))
+                        {
+                            echo "<strong><p>Username:   </strong>$advert->Username
                     <hr>
                     <strong><p>Email:   </strong>$advert->Email
                     <hr>
                     <strong><p>Postcode:   </strong>$advert->Address
                     <hr>
                     <strong><p>Phone Number:   </strong>$advert->Phone
-                    <hr>
+                    <hr>";
+                        }
+                        else echo "Seller details are available upon registration";
+                        ?>
+
+
+
             </div>
             </div>
             <!-- /.card -->
@@ -46,7 +54,7 @@
             </div>
             </div>
             <!-- /.container -->";
-}?>
+
 
 
 
