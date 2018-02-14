@@ -4,7 +4,34 @@
         <h1>Your saved adverts are displayed here</h1>
         <div class="row">
 
+            <?php
 
+            foreach($view->adverts as $advert) {
+
+                    echo "<div class=\"col-lg-4 col-md-6 mb-4\">
+               <div class=\"card h-100\">
+               <a href=\"advert.php?id=$advert->AdvertID\"><img class=\"card-img-top\" src=\"img/$advert->PhotoName\"  alt=\"\" name></a>
+               <div class=\"card-body\">
+               <h4 class=\"card-title\">
+               
+               <a href=\"advert.php?id=$advert->AdvertID\">$advert->AdvertName</a>
+               </h4>
+               <h5>£ $advert->AdvertPrice</h5>
+               <p class=\"card-text\">$advert->AdvertDescription</p>
+               </div>
+               <div class=\"card-footer\">
+               <small class=\"text-muted\">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+               </div>
+               </div>
+               </div>";
+
+            }
+            ?>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.col-lg-9 -->
 
     </div>
     <!-- /.row -->
@@ -15,7 +42,6 @@
     </div>
     </body>
     </html>
-
 
     <!-- Bootstrap core JavaScript -->
     <script src="../vendor/jquery/jquery.min.js"></script>

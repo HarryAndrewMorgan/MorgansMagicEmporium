@@ -95,14 +95,16 @@ class Advert extends PDO
     public function saveAdvert($userID, $advertID)
     {
         $sqlQuery = $this->db->prepare("INSERT INTO SavedAdverts (UserID, AdvertID) VALUES ('$userID', '$advertID')");
-        $sqlQuery->execute();
+        $results = $sqlQuery->execute();
+        print_r($results);
+        return $results;
 
     }
     public function returnSavedAdverts($userID)
     {
-        $sqlQuery = $this->db->prepare("SELECT * FROM SavedAdverts INNER JOIN Adverts ON SavedAdverts.AdvertID INNER JOIN Users ON SavedAdverts.UserID = Users.UserID");
-        $results = $sqlQuery->execute();
-        print_r($results);
+        $sqlQuery = $this->db->prepare("SELECT * FROM SavedAdverts INNER JOIN Adverts ON SavedAdverts.AdvertID  = Adverts.AdvertID WHERE SavedAdverts.UserID='$userID';");
+        $sqlQuery->execute();
+        $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
         return $results;
 
     }
