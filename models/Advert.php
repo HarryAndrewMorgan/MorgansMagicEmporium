@@ -8,17 +8,19 @@ class Advert extends PDO
         $this->db = $_dbhandle;
     }
 
-    public function createAdvert($name, $price, $description, $type, $userID, $picture)
+    public function createAdvert($name, $price, $description, $type, $userID, $picture, $date, $expiry)
     {
         {
             try {
-                $sqlQuery = $this->db->prepare("INSERT INTO Adverts(AdvertName,AdvertPrice,AdvertDescription, AdvertType, UserID, PhotoName) VALUES(:aname, :price, :description, :type, :userID, :picture)");
+                $sqlQuery = $this->db->prepare("INSERT INTO Adverts(AdvertName,AdvertPrice,AdvertDescription, AdvertType, UserID, PhotoName, AdvertDate, AdvertExpiry) VALUES(:aname, :price, :description, :type, :userID, :picture, :advertDate, :advertExpiry)");
                 $sqlQuery->bindparam(":aname", $name);
                 $sqlQuery->bindparam(":price", $price);
                 $sqlQuery->bindparam(":description", $description);
                 $sqlQuery->bindparam(":type", $type);
                 $sqlQuery->bindparam(":userID", $userID);
                 $sqlQuery->bindparam(":picture", $picture);
+                $sqlQuery->bindparam(":advertDate", $date);
+                $sqlQuery->bindparam(":advertExpiry", $expiry);
                 $sqlQuery->execute();
 
 
@@ -106,6 +108,38 @@ class Advert extends PDO
         $sqlQuery->execute();
         $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
         return $results;
+
+    }
+    public function expireAdverts()
+    {
+        $sqlQuery = $this->db->prepare("SELECT AdvertDate, AdvertExpiry FROM Adverts");
+        $sqlQuery->execute();
+        $adverts =  $sqlQuery->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($adverts as $row) {
+
+                if($row['AdvertExpiry'] < date('Y-m-d')) {
+                    $deleteQuery = $this->db->prepare("DELETE FROM Adverts WHERE AdvertID=:advertID");
+                    $deleteQuery->bindparam(":advertID", $row['AdvertID']);
+                    $deleteQuery->execute();
+                    return true;
+                } else return false;
+            }
+    }
+
+    public function adminFilter($filter)
+    {
+        if($filter == "Adverts"){
+            $sqlQuery = $this->db->prepare("SELECT * FROM Adverts");
+            $sqlQuery->execute();
+            $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
+            return $results;
+        }
+        if($filter == "Users"){
+            $sqlQuery = $this->db->prepare("SELECT * FROM Users");
+            $sqlQuery->execute();
+            $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
+            return $results;
+        }
 
     }
 }

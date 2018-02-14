@@ -41,14 +41,9 @@ if(isset($_POST['btn-signup'])) {
         echo "<script>alert('User already exists')</script>";
     }
     elseif ($user->register($username, $email, $pass, $address, $phone)) {
-        $user->redirect('index.php');
+        $user->redirect('login.php');
     }
 }
-
-
-
-
-
 $view = new stdClass();
 $view->pageTitle = 'Register';
 require_once('Views/register.phtml');

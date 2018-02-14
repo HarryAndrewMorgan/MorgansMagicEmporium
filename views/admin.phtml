@@ -1,0 +1,105 @@
+<?php require('views/navbar.phtml') ?>
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-3">
+
+                <h1 class="my-4"><?php echo $_SESSION['filterName']?></h1>
+                <form action="post">
+                    <div class="list-group">
+                        <a href="?filter=1" class="list-group-item" name="filter1">Adverts</a>
+                        <a href="?filter=2" class="list-group-item" name="filter2">Users</a>
+                        <a href="?filter=3" class="list-group-item" name="filter3">Other</a>
+                        <input type="text" placeholder="Search..." id="search" class="list-group-item" name="query">
+                        <br>
+                        <input type="submit" value="Search" class="btn btn-block btn-primary" name="search"/>
+                    </div>
+                </form>
+
+
+            </div>
+            <!-- /.col-lg-3 -->
+
+            <div class="col-lg-9">
+
+
+
+                <div class="row">
+
+                    <?php
+                    if($_SESSION['filterName'] == "Adverts") {
+                        foreach ($view->adverts as $advert) {
+                            echo "<div class=\"col-lg-4 col-md-6 mb-4\">
+               <div class=\"card h-100\">
+               <a href=\"advert.php?id=$advert->AdvertID\"><img class=\"card-img-top\" src=\"img/$advert->PhotoName\"  alt=\"\" name></a>
+               <div class=\"card-body\">
+               <h4 class=\"card-title\">
+               
+               <a href=\"advert.php?id=$advert->AdvertID\">$advert->AdvertName</a>
+               </h4>
+               <h5>£ $advert->AdvertPrice</h5>
+               <p class=\"card-text\">$advert->AdvertDescription</p>
+               </div>
+               <div class=\"card-footer\">
+               <small class=\"text-muted\">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+               </div>
+               </div>
+               </div>";
+                        }
+                    }
+                    ?>
+                <?php
+                    if($_SESSION['filterName'] == "Users") {
+                        foreach ($view->adverts as $user) {
+                            echo "
+            <div class=\"col-lg-9\">
+            <div class=\"card card-outline-secondary my-4\">
+                <div class=\"card-header\">
+                    User Account: $user->UserID
+                </div>
+                <div class=\"card-body\">
+                    <strong><p>Username:   </strong>$user->Username
+                    <hr>
+                    <strong><p>Email:   </strong>$user->Email
+                    <hr>
+                    <strong><p>Postcode:   </strong>$user->Address
+                    <hr>
+                    <strong><p>Phone Number:   </strong>$user->Phone
+                    <br>
+                    <br>
+                </div>
+                </div>
+                </div>
+                ";
+                        }
+                    }
+
+                ?>
+                        
+
+                </div>
+                </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.col-lg-9 -->
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+
+    </html>
+<?php require('Views/footer.phtml') ?>
