@@ -26,7 +26,7 @@ if(isset($_POST['btn-login']))
     }
     else
     {
-        $error = "Wrong Details !";
+        echo "<script>alert('Wrong user details')</script>";
     }
 }
 

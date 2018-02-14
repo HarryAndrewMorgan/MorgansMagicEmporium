@@ -12,9 +12,23 @@ if(isset($_POST['btn-create']))
     $type = (trim($_POST['type'],ENT_NOQUOTES));
     $picture = $_FILES['file']['name'];
     $userID = $_SESSION['UserID'];
+    $date = date('Y-m-d');
+    $expiry = date('Y-m-d', strtotime("+14 days"));
+    if ($name == "") {
+        echo "<script>alert('Please enter a name')</script>";
+    }
+    elseif ($price == "") {
+        echo "<script>alert('Please enter a price')</script>";
+    }
+    elseif ($description == "") {
+        echo "<script>alert('Please enter a description')</script>";
+    }
+    elseif ($picture == "") {
+        echo "<script>alert('Please enter a picture')</script>";
+    }
 
     try {
-        if ($advert->createAdvert($name, $price, $description, $type, $userID, $picture)) {
+        if ($advert->createAdvert($name, $price, $description, $type, $userID, $picture, $date, $expiry)) {
             $advert->redirect('youradverts.php');
         }
     } catch (PDOException $exception) {

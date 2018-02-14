@@ -6,29 +6,29 @@ require_once ('models/Advert.php');
 $_dbHandle = Database::getInstance()->getdbConnection();
 $advert = new Advert($_dbHandle);
 $advert->expireAdverts();
-$type="Singles";
-$_SESSION['filterName'] = "Singles";
+$type="Adverts";
+$_SESSION['filterName'] = "Adverts";
 if(isset($_GET['filter']))
 {
     $filter = $_GET['filter'];
     if ($filter == 1){
-        $type = "Singles";
-        $_SESSION['filterName'] = "Singles";
+        $type = "Adverts";
+        $_SESSION['filterName'] = "Adverts";
     } elseif ($filter == 2) {
-        $type = "Boosters";
-        $_SESSION['filterName'] = "Boosters";
+        $type = "Users";
+        $_SESSION['filterName'] = "Users";
     } elseif ($filter == 3) {
-        $type="Accessories";
-        $_SESSION['filterName'] = "Accessories";
+        $type="Other";
+        $_SESSION['filterName'] = "Other";
     }
 }
-$view->adverts = $advert->filterAdverts($type);
+$view->adverts = $advert->adminFilter($type);
 if(isset($_GET['search']))
 {
     $query = (trim($_GET['query'], ENT_NOQUOTES));
     $view->adverts = $advert->searchAdverts($query);
 }
 
-$view->pageTitle = 'Homepage';
-require_once('Views/index.phtml');
+$view->pageTitle = 'Admin';
+require_once('Views/admin.phtml');
 

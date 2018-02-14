@@ -38,7 +38,6 @@ class User extends PDO
                 if (password_verify($pass, $userRow['Password'])) {
                     $_SESSION['user_session'] = $userRow['username'];
                     $_SESSION['email'] = $email;
-                    echo "hi";
                     return true;
                 } else {
                     return false;
@@ -103,9 +102,9 @@ class User extends PDO
         $row = $sqlQuery->fetch(PDO::FETCH_ASSOC);
         //the checks
         if ($row['Username'] == $username) {
-            $error[] = "That username has already been taken";
+            echo "<script>alert('Username is already taken')</script>";
         } else if ($row['Email'] == $email) {
-            $error[] = "Sorry that email has already been taken";
+            echo "<script>alert('Email is already taken')</script>";
         } else return true;
     }
 
