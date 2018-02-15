@@ -3,13 +3,16 @@ require_once ('models/Database.php');
 class User extends PDO
 {
 
+    //declare dbhandle and instance
     protected $_dbHandle, $_dbInstance;
 
+    //constructs database using __construct
     function __construct($_dbhandle)
     {
         $this->_dbHandle = $_dbhandle;
     }
 
+    //registers the user after inputs have been validated, also hashes password
     public function register($username, $email, $pass, $address, $phone)
     {
         try {
@@ -27,7 +30,7 @@ class User extends PDO
         }
     }
 
-    //login function
+    //login function that returns a single row and verifies hashed password, returns true if login details match records, and false if not
     public function login($username, $email, $pass)
     {
         try {
@@ -36,8 +39,8 @@ class User extends PDO
             $userRow = $sqlQuery->fetch(PDO::FETCH_ASSOC);
             if ($sqlQuery->rowCount() > 0) {
                 if (password_verify($pass, $userRow['Password'])) {
-                    $_SESSION['user_session'] = $userRow['username'];
-                    $_SESSION['email'] = $email;
+//                    $_SESSION['user_session'] = $userRow['username'];
+//                    $_SESSION['email'] = $email;
                     return true;
                 } else {
                     return false;
@@ -51,7 +54,7 @@ class User extends PDO
     //simple check to see if user is logged in
     public function is_loggedin()
     {
-        if (isset($_SESSION['user_session'])) {
+        if (isset($_SESSION['UserID'])) {
             return true;
         }
     }
@@ -62,6 +65,7 @@ class User extends PDO
         header("Location: $url");
     }
 
+    //destroys and unsets all session variables, logging the user out. Also redirects the user to the homepage
     public function logout()
     {
         session_unset();
@@ -69,6 +73,7 @@ class User extends PDO
         $this->redirect('index.php');
     }
 
+    //returns a single users information when given the set session variable that has been set
     public function fetchAUser()
     {
         $username = $_SESSION['Username'];
@@ -80,6 +85,7 @@ class User extends PDO
         $_SESSION['UserID'] = $result['UserID'];
     }
 
+    //returns all users from the user table
     public function fetchAllUsers()
     {
         $sqlQuery = $this->_dbHandle->prepare("SELECT * FROM Users");
@@ -92,6 +98,7 @@ class User extends PDO
         return $dataSet;
     }
 
+    //checks the users table for any users that have the same details inputted and returns an alert if any matches are made
     public function checkDuplicateDetails($username, $email)
     {
         //prepare statement to find matching username and emails
@@ -99,26 +106,12 @@ class User extends PDO
         //execute statement and enter values into an array for easy access
         $sqlQuery->execute(array(':username' => $username, ':email' => $email));
         //fetches the associated rows
-        $row = $sqlQuery->fetch(PDO::FETCH_ASSOC);
-        //the checks
-        if ($row['Username'] == $username) {
-            echo "<script>alert('Username is already taken')</script>";
-        } else if ($row['Email'] == $email) {
-            echo "<script>alert('Email is already taken')</script>";
-        } else return true;
+        $sqlQuery->fetchAll(PDO::FETCH_OBJ);
+        //if any users are found return true if none are found return false
+        if($sqlQuery->rowCount() > 0) {
+            return true;
+        } else return false;
     }
 
-    public function checkDuplicateUser($username, $email)
-    {
-        $sqlQuery = $this->_dbHandle->prepare("SELECT Username, Email FROM Users WHERE Username='$username' OR Email='$email'");
-        $sqlQuery->execute();
-        $row = $sqlQuery->fetch(PDO::FETCH_ASSOC);
-        if($row['Username'] == $username || $row['Email'] == $email)
-        {
-            return false;
-        } else {
-            return true;
-        }
-    }
 }
 

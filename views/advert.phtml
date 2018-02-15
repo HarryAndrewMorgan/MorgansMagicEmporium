@@ -2,7 +2,7 @@
 <!-- Page Content -->
 
 
-
+    <!--After fetching all adverts, loops through the object and returns advert details as well as user details for that advert-->
             <?php
                 foreach($view->adverts as $advert)
                 echo "<div class=\"container\">
@@ -11,7 +11,8 @@
             <h1 class=\"my-4\">Listing Number: $advert->AdvertID</h1>
             <div class=\"list-group\">
             <form method=\"post\">
-                        <button type=\"submit\" id=\"saveAdvert\" name=\"saveAdvert\" class=\"list-group-item\">Save Advert</button>
+                        <button type=\"submit\" id=\"saveAdvert\" name=\"saveAdvert\" class=\"btn btn-block btn-primary\">Save Advert</button>
+                        <button type=\"submit\" id=\"unsaveAdvert\" name=\"unsaveAdvert\" class=\"btn btn-block btn-primary\">Unsave Advert</button>
                     </form>
             </div>
             </div>

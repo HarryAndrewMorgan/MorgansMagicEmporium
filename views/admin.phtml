@@ -5,7 +5,7 @@
         <div class="row">
 
             <div class="col-lg-3">
-
+                <!--Displays the filter name-->
                 <h1 class="my-4"><?php echo $_SESSION['filterName']?></h1>
                 <form action="post">
                     <div class="list-group">
@@ -27,7 +27,7 @@
 
 
                 <div class="row">
-
+                    <!--After fetching all adverts, loops through the object and returns advert details as well as user details-->
                     <?php
                     if($_SESSION['filterName'] == "Adverts") {
                         foreach ($view->adverts as $advert) {
@@ -36,12 +36,12 @@
                <a href=\"advert.php?id=$advert->AdvertID\"><img class=\"card-img-top\" src=\"img/$advert->PhotoName\"  alt=\"\" name></a>
                <div class=\"card-body\">
                <h4 class=\"card-title\">
-               
                <a href=\"advert.php?id=$advert->AdvertID\">$advert->AdvertName</a>
                </h4>
                <h5>£ $advert->AdvertPrice</h5>
                <p class=\"card-text\">$advert->AdvertDescription</p>
                </div>
+               <a href=\"?deleteAdvert=$advert->AdvertID\" class=\"btn btn-danger\" name=\"deleteAdvert\">Delete Advert</a>
                <div class=\"card-footer\">
                <small class=\"text-muted\">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                </div>
@@ -67,8 +67,8 @@
                     <strong><p>Postcode:   </strong>$user->Address
                     <hr>
                     <strong><p>Phone Number:   </strong>$user->Phone
-                    <br>
-                    <br>
+                    <hr>
+                    <a href=\"?deleteUser=$user->UserID\" class=\"btn btn-danger\" name=\"deleteUser\">Delete User</a> 
                 </div>
                 </div>
                 </div>
@@ -77,7 +77,7 @@
                     }
 
                 ?>
-                        
+
 
                 </div>
                 </div>

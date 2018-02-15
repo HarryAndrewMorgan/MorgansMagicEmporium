@@ -5,14 +5,14 @@
       <div class="row">
 
         <div class="col-lg-3">
-
+            <!--Displays session filter name-->
           <h1 class="my-4"><?php echo $_SESSION['filterName']?></h1>
             <form action="post">
                 <div class="list-group">
                     <a href="?filter=1" class="list-group-item" name="filter1">Singles</a>
                     <a href="?filter=2" class="list-group-item" name="filter2">Booster Packs</a>
                     <a href="?filter=3" class="list-group-item" name="filter3">Accessories</a>
-                    <input type="text" placeholder="Search..." id="search" class="list-group-item" name="query">
+                    <input type="text" placeholder="Search by name" id="search" class="list-group-item" name="query">
                     <br>
                     <input type="submit" value="Search" class="btn btn-block btn-primary" name="search"/>
                 </div>
@@ -52,7 +52,7 @@
           </div>
 
           <div class="row">
-
+              <!--After fetching all adverts, loops through the object and returns advert details-->
               <?php
 
               foreach($view->adverts as $advert)
