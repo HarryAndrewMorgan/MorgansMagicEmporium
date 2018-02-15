@@ -12,6 +12,14 @@ if(isset($_POST['btn-create']))
     $description = (trim($_POST['description'],ENT_NOQUOTES));
     $type = (trim($_POST['type'],ENT_NOQUOTES));
     $picture = $_FILES['file']['name'];
+    $tempName = $_FILES['file']['tmp_name'];
+    if(isset($picture)){
+        if(!empty($picture))
+        {
+            $dir = "img/";
+            move_uploaded_file($tempName, $dir. $picture);
+        }
+    }
     $userID = $_SESSION['UserID'];
     $date = date('Y-m-d');
     $expiry = date('Y-m-d', strtotime("+14 days"));

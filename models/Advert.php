@@ -70,6 +70,12 @@ class Advert extends PDO
         $sqlQuery = $this->db->prepare("SELECT * FROM Adverts WHERE AdvertType='$type'");
         $sqlQuery->execute();
         $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
+        if ($sqlQuery->rowCount() == 0) {
+            $sqlQuery2 = $this->db->prepare("SELECT * FROM Adverts ORDER BY AdvertName ASC");
+            $sqlQuery2->execute();
+            $results = $sqlQuery2->fetchAll(PDO::FETCH_OBJ);
+        }
+
         return $results;
     }
     //displays adverts when given 2 parameters that equal the AdvertID and the foreign key UserID

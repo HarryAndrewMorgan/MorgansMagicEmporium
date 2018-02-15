@@ -25,6 +25,12 @@ if(isset($_GET['filter']))
     } elseif ($filter == 3) {
         $type="Accessories";
         $_SESSION['filterName'] = "Accessories";
+    } elseif ($filter == 4) {
+        $type = "A-Z";
+        $_SESSION['filterName'] = "Name A-Z";
+    } elseif ($filter == 5) {
+        $type = "High-Low";
+        $_SESSION['filterName'] = "Price High-Low";
     }
 }
 //filters the adverts with a query
