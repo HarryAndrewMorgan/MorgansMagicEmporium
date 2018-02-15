@@ -4,7 +4,7 @@ require_once ('models/User.php');
 session_start();
 $_dbHandle = Database::getInstance()->getdbConnection();
 $user = new User($_dbHandle);
-//trimming the submitted data into post variables
+//trimming the submitted data into post variables then running appropriate validation such as string length, valid email and empty inputs as well as duplicate user info
 if(isset($_POST['btn-signup'])) {
 
     $username = (trim($_POST['username'], ENT_NOQUOTES));
@@ -37,7 +37,7 @@ if(isset($_POST['btn-signup'])) {
     elseif ($_POST['code'] != $_SESSION['random_code']) {
         echo "<script>alert('Incorrect captcha code')</script>";
     }
-    elseif ($user->checkDuplicateUser($username, $email)) {
+    elseif ($user->checkDuplicateDetails($username, $email)) {
         echo "<script>alert('User already exists')</script>";
     }
     elseif ($user->register($username, $email, $pass, $address, $phone)) {
