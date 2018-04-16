@@ -24,3 +24,5 @@ if(isset($_POST['unsaveAdvert']))
 }
 $view->pageTitle = 'Advert';
 require_once('views/advert.phtml');
+
+//test semester 2 commit
