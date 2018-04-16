@@ -38,10 +38,14 @@ $view->adverts = $advert->filterAdverts($type);
 //takes a search query and executes it returning any results
 if(isset($_GET['search']))
 {
-    $query = (trim($_GET['query'], ENT_NOQUOTES));
+    $query = (trim($_REQUEST['query'], ENT_NOQUOTES));
     $view->adverts = $advert->searchAdverts($query);
 }
-
+if (isset($_GET['search']))
+{
+    $query = (trim($_REQUEST['query'], ENT_NOQUOTES));
+    $view->adverts = $advert->liveSearch($query);
+}
 $view->pageTitle = 'Homepage';
 require_once('Views/index.phtml');
 

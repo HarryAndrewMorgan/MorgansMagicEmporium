@@ -184,4 +184,11 @@ class Advert extends PDO
     {
         header("Location: $url");
     }
+    public function liveSearch($advertName)
+    {
+        $sqlQuery = $this->db->prepare("SELECT * FROM Adverts WHERE AdvertName=:advertName");
+        $sqlQuery->bindparam(":advertName", $advertName);
+        $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
+        return $results;
+    }
 }

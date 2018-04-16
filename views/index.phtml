@@ -1,5 +1,25 @@
+
 <?php require('views/navbar.phtml') ?>
     <!-- Page Content -->
+<script>
+    function showHint(str) {
+        if(str.length == 0) {
+            document.getElementById("txtHint").innerHTML = "";
+            return;
+        } else {
+            var xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    var uic = document.getElementById("txtHint")
+                    uic.innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET", "gethint.php?q=" + str, true);
+            xmlhttp.send();
+        }
+    }
+</script>
     <div class="container">
 
       <div class="row">
@@ -14,8 +34,10 @@
                     <a href="?filter=3" class="list-group-item" name="filter3">Accessories</a>
                     <a href="?filter=4" class="list-group-item" name="filter4">Name A-Z</a>
                     <input type="text" placeholder="Search by name" id="search" class="list-group-item" name="query">
+                    <p class="list-group-item">Suggested: <span id="txtHint"></span></p>
                     <br>
                     <input type="submit" value="Search" class="btn btn-block btn-primary" name="search"/>
+
                 </div>
             </form>
 
