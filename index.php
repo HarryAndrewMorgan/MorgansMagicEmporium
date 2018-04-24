@@ -3,10 +3,12 @@ $view = new stdClass();
 session_start();
 require_once ('models/Database.php');
 require_once ('models/Advert.php');
+require_once ('models/xmler.php');
 //gets db connection
 $_dbHandle = Database::getInstance()->getdbConnection();
 //creates new advert with db conn
 $advert = new Advert($_dbHandle);
+
 //expires any adverts past expiry date
 $advert->expireAdverts();
 //sets default filter to be singles for default display
@@ -41,10 +43,10 @@ if(isset($_GET['search']))
     $query = (trim($_REQUEST['query'], ENT_NOQUOTES));
     $view->adverts = $advert->searchAdverts($query);
 }
-if (isset($_GET['search']))
+if(isset($_GET['search']))
 {
     $query = (trim($_REQUEST['query'], ENT_NOQUOTES));
-    $view->adverts = $advert->liveSearch($query);
+    $view->hints = $advert->liveSearch($query);
 }
 $view->pageTitle = 'Homepage';
 require_once('Views/index.phtml');
