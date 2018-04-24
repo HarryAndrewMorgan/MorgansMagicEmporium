@@ -89,7 +89,7 @@ class Advert extends PDO
     //allows the user to filter adverts by searching for a string matching to the name of an advert
     public function searchAdverts($query)
     {
-        $sqlQuery = $this->db->prepare("SELECT * FROM Adverts WHERE AdvertName LIKE '$query'");
+        $sqlQuery = $this->db->prepare("SELECT * FROM Adverts WHERE AdvertName LIKE '$query%'");
         $sqlQuery->execute();
         $results = $sqlQuery->fetchAll(PDO::FETCH_OBJ);
         return $results;

@@ -21,3 +21,12 @@ if ($q !== "") {
     }
 }
 echo $hint === "" ? "no suggestion" : $hint;
+
+
+
+//} /for loop ends
+//function autocomplete() {
+//    var value = this.value;
+//    document.getElementById('search').value = value;
+//}
+//document.getElementByTagName("option").addEventListener("click", autocomplete);

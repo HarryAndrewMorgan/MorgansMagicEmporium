@@ -42,11 +42,6 @@ if(isset($_GET['search']))
     $query = (trim($_REQUEST['query'], ENT_NOQUOTES));
     $view->adverts = $advert->searchAdverts($query);
 }
-//if(isset($_GET['search']))
-//{
-//    $query = (trim($_REQUEST['query'], ENT_NOQUOTES));
-//    $view->hints = $advert->liveSearch($query);
-//}
 $view->pageTitle = 'Homepage';
 require_once('Views/index.phtml');
 
