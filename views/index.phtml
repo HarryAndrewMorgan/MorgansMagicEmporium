@@ -1,25 +1,6 @@
 
 <?php require('views/navbar.phtml') ?>
     <!-- Page Content -->
-<script>
-    function showHint(str) {
-        if(str.length == 0) {
-            document.getElementById("txtHint").innerHTML = "";
-            return;
-        } else {
-            var xmlhttp = new XMLHttpRequest();
-
-            xmlhttp.onreadystatechange = function() {
-                if(this.readyState == 4 && this.status == 200) {
-                    var uic = document.getElementById("txtHint")
-                    uic.innerHTML = this.responseText;
-                }
-            };
-            xmlhttp.open("GET", "gethint.php?q=" + str, true);
-            xmlhttp.send();
-        }
-    }
-</script>
     <div class="container">
 
       <div class="row">
@@ -27,20 +8,47 @@
         <div class="col-lg-3">
             <!--Displays session filter name-->
           <h1 class="my-4"><?php echo $_SESSION['filterName']?></h1>
-            <form action="post">
+            <form action="post" autocomplete="off">
                 <div class="list-group">
                     <a href="?filter=1" class="list-group-item" name="filter1">Singles</a>
                     <a href="?filter=2" class="list-group-item" name="filter2">Booster Packs</a>
                     <a href="?filter=3" class="list-group-item" name="filter3">Accessories</a>
                     <a href="?filter=4" class="list-group-item" name="filter4">Name A-Z</a>
-                    <input type="text" placeholder="Search by name" id="search" class="list-group-item" name="query">
+                    <input type="text" placeholder="Search by name" onkeyup="showHint(this.value)" id="search" class="list-group-item" name="query">
                     <p class="list-group-item">Suggested: <span id="txtHint"></span></p>
+                    <select class="list-group-item" id="resultsSelectionBox"></select>
                     <br>
                     <input type="submit" value="Search" class="btn btn-block btn-primary" name="search"/>
 
                 </div>
             </form>
+            <script>
+                function showHint(str) {
+                    if (str.length == 0) {
+                        document.getElementById("txtHint").innerHTML = "";
+                        return;
+                    } else {
+                        var xmlhttp = new XMLHttpRequest();
+                        xmlhttp.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                var uic = document.getElementById("txtHint")
 
+                                uic.innerHTML = this.responseText;
+                                uic = document.getElementById("resultsSelectionBox")
+                                var names = this.responseText.split(',');
+                                for (var i = 0; i<names.length; i++){
+                                    var opt = document.createElement('option');
+                                    opt.value = names[i];
+                                    opt.innerHTML = names[i];
+                                    uic.appendChild(opt);
+                                }
+                            }
+                        };
+                        xmlhttp.open("GET", "models/xmler.php?q=" + str, true);
+                        xmlhttp.send();
+                    }
+                }
+            </script>
 
         </div>
         <!-- /.col-lg-3 -->
