@@ -14,9 +14,9 @@
                     <a href="?filter=2" class="list-group-item" name="filter2">Booster Packs</a>
                     <a href="?filter=3" class="list-group-item" name="filter3">Accessories</a>
                     <a href="?filter=4" class="list-group-item" name="filter4">Name A-Z</a>
-                    <input type="text" placeholder="Search by name" onkeyup="showHint(this.value)" id="search" class="list-group-item" name="query">
+                    <input type="text" list="resultsSelectionBox" placeholder="Search by name" onkeyup="showHint(this.value)" id="search" class="list-group-item" name="query">
                     <p class="list-group-item">Suggested: <span id="txtHint"></span></p>
-                    <select class="list-group-item" id="resultsSelectionBox"></select>
+                    <select class="list-group-item" id="resultsSelectionBox" onchange="autoComplete()" autocomplete="off"></select>
                     <br>
                     <input type="submit" value="Search" class="btn btn-block btn-primary" name="search"/>
 
@@ -31,21 +31,38 @@
                         var xmlhttp = new XMLHttpRequest();
                         xmlhttp.onreadystatechange = function() {
                             if (this.readyState == 4 && this.status == 200) {
-                                var uic = document.getElementById("txtHint")
-
+                                var uic = document.getElementById("txtHint");
                                 uic.innerHTML = this.responseText;
-                                uic = document.getElementById("resultsSelectionBox")
+                                uic = document.getElementById("resultsSelectionBox");
                                 var names = this.responseText.split(',');
                                 for (var i = 0; i<names.length; i++){
                                     var opt = document.createElement('option');
                                     opt.value = names[i];
                                     opt.innerHTML = names[i];
-                                    uic.appendChild(opt);
+                                    if(!checkDuplicate(opt.value))
+                                    {
+                                        uic.appendChild(opt);
+                                    }
                                 }
                             }
+
                         };
                         xmlhttp.open("GET", "models/xmler.php?q=" + str, true);
                         xmlhttp.send();
+                    }
+                }
+                function autoComplete()
+                {
+                    var autocomplete = document.getElementById('resultsSelectionBox').value;
+                    document.getElementById('search').value = autocomplete;
+                }
+                function checkDuplicate(opt)
+                {
+                    for (i = 0; i < document.getElementById("resultsSelectionBox").length; ++i){
+                        if (document.getElementById("resultsSelectionBox").options[i].value == opt){
+                            return true;
+                        }
+
                     }
                 }
             </script>

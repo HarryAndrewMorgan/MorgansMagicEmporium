@@ -3,7 +3,6 @@ $view = new stdClass();
 session_start();
 require_once ('models/Database.php');
 require_once ('models/Advert.php');
-require_once ('models/xmler.php');
 //gets db connection
 $_dbHandle = Database::getInstance()->getdbConnection();
 //creates new advert with db conn
@@ -42,11 +41,6 @@ if(isset($_GET['search']))
 {
     $query = (trim($_REQUEST['query'], ENT_NOQUOTES));
     $view->adverts = $advert->searchAdverts($query);
-}
-if(isset($_GET['search']))
-{
-    $query = (trim($_REQUEST['query'], ENT_NOQUOTES));
-    $view->hints = $advert->liveSearch($query);
 }
 $view->pageTitle = 'Homepage';
 require_once('Views/index.phtml');
