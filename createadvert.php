@@ -5,6 +5,7 @@ require_once ('models/Advert.php');
 $_dbHandle = Database::getInstance()->getdbConnection();
 $advert = new Advert($_dbHandle);
 //when button is pressed input is stripped and removes specialchars then is validated in multiple ways for empty inputs
+$file = "";
 if(isset($_POST['btn-create']))
 {
     $name = (trim($_POST['name'], ENT_NOQUOTES));
@@ -23,25 +24,15 @@ if(isset($_POST['btn-create']))
         }
         $img = str_replace(' ', '+', $img);
         $data = base64_decode($img);
-        $file = 'img/'.date("YmdHis").$ext;
+        $file = 'img/'.$_FILES['file']['name'];
         if (file_put_contents($file, $data)) {
             echo "<p>The image was saved as $file.</p>";
         } else {
             echo "<p>The image could not be saved.</p>";
         }
     }
-
-
-
     $picture = $_FILES['file']['name'];
-    $tempName = $_FILES['file']['tmp_name'];
-    if(isset($picture)){
-        if(!empty($picture))
-        {
-            $dir = "img/";
-            move_uploaded_file($tempName, $dir. $picture);
-        }
-    }
+
     $userID = $_SESSION['UserID'];
     $date = date('Y-m-d');
     $expiry = date('Y-m-d', strtotime("+14 days"));
