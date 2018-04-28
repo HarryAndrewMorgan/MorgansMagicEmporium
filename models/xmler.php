@@ -8,8 +8,11 @@ $a = $advert->liveSearch($q);
 $hint = "";
 // lookup all hints from array if $q is different from ""
 if ($q !== "") {
+    //queries with entered string in lowercase
     $q = strtolower($q);
+    //calculates q length
     $len=strlen($q);
+    //Iterates through returned results and sets $name to each one
     foreach($a as $name) {
         if (stristr($q, substr($name, 0, $len))) {
             if ($hint === "") {
@@ -20,13 +23,5 @@ if ($q !== "") {
         }
     }
 }
+//echoes no suggestion is no results are returned from livesearch()
 echo $hint === "" ? "no suggestion" : $hint;
-
-
-
-//} /for loop ends
-//function autocomplete() {
-//    var value = this.value;
-//    document.getElementById('search').value = value;
-//}
-//document.getElementByTagName("option").addEventListener("click", autocomplete);
