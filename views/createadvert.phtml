@@ -7,8 +7,12 @@
         <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
         <div class="card-body">
             <div class="form-group">
-                <input type="file" name="file" id="file" placeholder="Upload an image">
+                <input type="file" name="file" id="file" onchange="previewFile()" placeholder="Upload an image">
+                <input id="inp_img" name="img" type="hidden" value="">
             </div>
+            <br>
+            <img src="" id="previewImage" height="200" alt="Image preview...">
+            <p id="fileDetails">File details...</p>
             <div class="form-group">
                 <input type="text" class="form-control" name="name" placeholder="Product Name"/>
             </div>
@@ -35,7 +39,65 @@
         </div>
     </div>
     <!-- /.card -->
+    <script>
+        // reference to the image element to hold the preview
+        var preview = document.getElementById('previewImage');
+        // new browser file reader object
+        var reader = new FileReader();
+        // reference to a text element to hold details
+        var outText = document.getElementById('fileDetails');
+        outText.innerHTML = "";
 
+        function previewFile() {  // function to set the preview
+            // get a handle to the file chosen
+            var file = document.getElementById('file').files[0];
+            // set up an event listener triggered when the load is complete.
+            reader.addEventListener("load", function () {
+                // reader complete, set data to the preview element
+                preview.src = reader.result;
+            }, false);
+            // if a file has been chosen
+            if (file) {
+                reader.readAsDataURL(file); // start reading the file
+                outText.innerHTML = "size: " + file.size;  // display some details
+                //outText.innerHTML = "name: " + file.name;
+            }
+        }
+        function fileChange(image)
+        {
+            document.getElementById('inp_img').value = '';
+            var file = image.target.files[0];
+            if(file.type == "image/jpeg" || file.type == "image/png") {
+                var reader = new FileReader();
+                reader.onload = function(readerEvent) {
+                    var image = new Image();
+                    image.onload = function(imageEvent) {
+                        var max_size = 300;
+                        var w = image.width;
+                        var h = image.height;
+                        if (w > h) {  if (w > max_size) { h*=max_size/w; w=max_size; }
+                        } else     {  if (h > max_size) { w*=max_size/h; h=max_size; } }
+                        var canvas = document.createElement('canvas');
+                        canvas.width = w;
+                        canvas.height = h;
+                        canvas.getContext('2d').drawImage(image, 0, 0, w, h);
+                        if (file.type == "image/jpeg") {
+                            var dataURL = canvas.toDataURL("image/jpeg", 1.0);
+                        } else {
+                            var dataURL = canvas.toDataURL("image/png");
+                        }
+                        document.getElementById('inp_img').value = dataURL;
+                    }
+                    image.src = readerEvent.target.result;
+                }
+                reader.readAsDataURL(file);
+            }   else {
+                document.getElementById('file').value = '';
+                alert('Only JPEG or PNG images are allowed.')
+            }
+        }
+        document.getElementById('file').addEventListener('change', fileChange, false);
+    </script>
     <div class="card card-outline-secondary my-4">
         <div class="card-header">
             Your Details (this will be visible to other users so that they can contact you)

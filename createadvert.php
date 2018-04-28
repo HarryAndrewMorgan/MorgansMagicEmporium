@@ -11,6 +11,28 @@ if(isset($_POST['btn-create']))
     $price = (trim($_POST['price'],ENT_NOQUOTES));
     $description = (trim($_POST['description'],ENT_NOQUOTES));
     $type = (trim($_POST['type'],ENT_NOQUOTES));
+    if (count($_POST) && (strpos($_POST['img'], 'data:image') === 0)) {
+        $img = $_POST['img'];
+        if (strpos($img, 'data:image/jpeg;base64,') === 0) {
+            $img = str_replace('data:image/jpeg;base64,', '', $img);
+            $ext = '.jpg';
+        }
+        if (strpos($img, 'data:image/png;base64,') === 0) {
+            $img = str_replace('data:image/png;base64,', '', $img);
+            $ext = '.png';
+        }
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
+        $file = 'img/'.date("YmdHis").$ext;
+        if (file_put_contents($file, $data)) {
+            echo "<p>The image was saved as $file.</p>";
+        } else {
+            echo "<p>The image could not be saved.</p>";
+        }
+    }
+
+
+
     $picture = $_FILES['file']['name'];
     $tempName = $_FILES['file']['tmp_name'];
     if(isset($picture)){
